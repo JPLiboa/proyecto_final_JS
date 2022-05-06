@@ -35,7 +35,7 @@ productos.forEach(productosEnArray => {
 })
 
 
-/*Prompt de GiftCard del Shop*/
+/*Prompt de GiftCard del Shop
 
 let giftCardTotal= 10000
 let giftCard= parseInt( prompt ("Ingrese el monto de la SoploCard"))
@@ -71,8 +71,54 @@ for (let i = 0; i < suma; i++) {
     suma= suma + 1 ;
 }
 
+}*/
+
+
+
+/*desafio clase 9 - eventos -*/
+   
+class buscador {
+    constructor(modelo,material,precio, stock) {
+        this.modelo = modelo;
+        this.material = material;
+        this.precio = precio;
+        this.stock = stock;
+    }
 }
 
+const buscador1 = new buscador("Maceta", "cemento", 2000, "SI")
+const buscador2 = new buscador("Estructura", "Hiero", 1000, "NO")
+const buscador3 = new buscador("Pie", "Hiero", 500, "SI")
+const buscador4 = new buscador("Pie", "madera", 200, "NO")
 
-   
+let buscadores = [buscador1, buscador2, buscador3, buscador4]
+
+let inputColor = document.getElementById("inputColor")
+let inputTexto = document.getElementById("inputTexto")
+let divBuscador = document.getElementById("divBuscador")
+
+
+
+inputColor.addEventListener('input', () => {
+    document.body.style.backgroundColor = inputColor.value
+})
+
+inputTexto.addEventListener('change', () => {
+    let search = inputTexto.value
+    console.log(search.toLowerCase())
+    let buscadoresFiltrados = buscador.filter(buscador => buscador.marca.includes(search.toLowerCase()))
+
+    buscadorFiltrados.forEach(buscador => {
+        divBuscador.innerHTML += `
+        <div class="card" id="divProductos${divProductos.id}" style="width: 18rem;">
+            <div class="card-body">
+            <h5 class="card-title">Modelo: ${buscador.modelo}</h5>
+                <p>Material: ${buscador.material} </p>
+                <p>Precio: $${buscador.precio} </p>
+                <p>Stock: ${buscador.stock} </p>
+            </div>
+        </div>
+        `
+    })
+})
 
