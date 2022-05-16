@@ -35,43 +35,6 @@ productos.forEach(productosEnArray => {
 })
 
 
-/*Prompt de GiftCard del Shop
-
-let giftCardTotal= 10000
-let giftCard= parseInt( prompt ("Ingrese el monto de la SoploCard"))
-
-while (isNaN(giftCard)){
-    giftCard = parseInt(prompt('Monto no válido, ingreselo nuevamente'));
-}
-let PieHierro= 2000
-let MacetaCemento= 5000
-let MacetaPlastico= 500
-
-
-
-let suma= 1;
-
-
-for (let i = 0; i < suma; i++) {
-    let giftCardTipo=  prompt ("Ingrese el tipo de SoploCard: Estructura Hierro - Maceta Cemento - Pie Madera")
-    if (giftCardTipo == "Estructura Hierro"){
-    prompt("Ingrese el e-mail del beneficiado")
-    alert("¡¡Muchas gracias por regalar vida!!")
-    suma= suma - 1 ;
-}else if (giftCardTipo == "Maceta Cemento"){
-    prompt("Ingrese el e-mail del beneficiado")
-    alert("¡¡Muchas gracias por regalar vida!!")
-    suma= suma - 1 ;
-}else if (giftCardTipo == "Pie Madera"){
-    prompt("Ingrese el e-mail del beneficiado")
-    alert("¡¡Muchas gracias por regalar vida!!")
-    suma= suma - 1 ;
-}else{
-    alert ("opcion no valida");   
-    suma= suma + 1 ;
-}
-
-}*/
 
 
 
@@ -86,10 +49,10 @@ class buscador {
     }
 }
 
-const buscador1 = new buscador("Maceta", "cemento", 2000, "SI")
-const buscador2 = new buscador("Estructura", "Hiero", 1000, "NO")
-const buscador3 = new buscador("Pie", "Hiero", 500, "SI")
-const buscador4 = new buscador("Pie", "madera", 200, "NO")
+const buscador1 = new buscador("maceta", "cemento", 2000, "si")
+const buscador2 = new buscador("estructura", "hierro", 1000, "no")
+const buscador3 = new buscador("pie", "hierro", 500, "si")
+const buscador4 = new buscador("pie", "madera", 200, "no")
 
 let buscadores = [buscador1, buscador2, buscador3, buscador4]
 
@@ -106,9 +69,9 @@ inputColor.addEventListener('input', () => {
 inputTexto.addEventListener('change', () => {
     let search = inputTexto.value
     console.log(search.toLowerCase())
-    let buscadoresFiltrados = buscador.filter(buscador => buscador.marca.includes(search.toLowerCase()))
+    let productosEncontrados = buscadores.filter(buscador => buscador.modelo.includes(search.toLowerCase()))
 
-    buscadorFiltrados.forEach(buscador => {
+    productosEncontrados.forEach(buscador => {
         divBuscador.innerHTML += `
         <div class="card" id="divProductos${divProductos.id}" style="width: 18rem;">
             <div class="card-body">
