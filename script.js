@@ -1,13 +1,10 @@
-/*Arrays de producto + link con HTML + comienzo e-commerce*/
 class Producto {
     constructor(nombre, marca, precio, stock) {
         this.nombre = nombre
         this.marca = marca
         this.precio = precio
         this.stock = stock
-
-    }
-    
+    }    
 }
 
 const producto1 = new Producto("Maceta Cemento", "Soplo", 2000, 20)
@@ -16,29 +13,36 @@ const producto3 = new Producto("Pie Hierro", "Soplo", 500, 15)
 const producto4 = new Producto("Pie Madera", "Soplo", 250, 25)
 
 let productos = [producto1, producto2, producto3, producto4]
-
 let divProductos = document.getElementById("divProductos")
+let carrito = []
 
 productos.forEach(productosEnArray => {
     divProductos.innerHTML += `
-    <div class="card productosSoplo" id="style=producto${productosEnArray}" style="width: 18rem; padding:7px; grid:row"">
-    
+    <div class="card productosSoplo" id="producto${productosEnArray.id}" style="width: 18rem; padding:7px; grid:row"">
     <div class="card-body">
       <h5 class="card-title">Nombre: ${productosEnArray.nombre}</h5>
         <p> Marca: ${productosEnArray.marca}</p>
         <p> Precio: ${productosEnArray.precio}</p>
         <p> Stock: ${productosEnArray.stock}</p>
-      <a href="#" class="btn btn-primary">Agregar al carrito</a>
+      <a href="#" id="boton${productosEnArray.id}" class="btn btn-primary">Agregar al carrito</a>
     </div>
   </div>
      `
 })
 
+productos.forEach(productos=> {
+   document.getElementById(`boton${productos.id}`).addEventListener('click', () =>{
+    carrito.push(productos)
+    localStorage.setItem("productosCarrito", JSON.stringify(carrito))
+   })
+})
 
+document.getElementById("mostrarBoton").addEventListener('click', ()=> {
+    let arrayParseado = JSON.parse(localStorage.getItem('productosCarrito'))
+    console.log(arrayParseado)
+})
 
-
-
-/*desafio clase 9 - eventos -*/
+/*desafio clase 11 - Storage-JSON -*/
    
 class buscador {
     constructor(modelo,material,precio, stock) {
@@ -75,13 +79,17 @@ inputTexto.addEventListener('change', () => {
         divBuscador.innerHTML += `
         <div class="card" id="divProductos${divProductos.id}" style="width: 18rem;">
             <div class="card-body">
-            <h5 class="card-title">Modelo: ${buscador.modelo}</h5>
+                <h5 class="card-title">Modelo: ${buscador.modelo}</h5>
                 <p>Material: ${buscador.material} </p>
                 <p>Precio: $${buscador.precio} </p>
                 <p>Stock: ${buscador.stock} </p>
+                <button id="boton${divProductos.id}" class="btn btn-dark">Agregar al Carrito</button>
+                
             </div>
         </div>
         `
     })
 })
+
+
 
