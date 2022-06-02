@@ -1,29 +1,35 @@
+
 class Producto {
-    constructor(nombre, marca, precio, stock) {
+    constructor(id,nombre, marca, precio, stock) {
+        this.id = id
         this.nombre = nombre
-        this.marca = marca
         this.precio = precio
         this.stock = stock
     }    
 }
 
-const producto1 = new Producto("Maceta Cemento", "Soplo", 2000, 20)
-const producto2 = new Producto("Estructura Hierro", "Soplo", 1000, 40)
-const producto3 = new Producto("Pie Hierro", "Soplo", 500, 15)
-const producto4 = new Producto("Pie Madera", "Soplo", 250, 25)
+const producto1 = new Producto(1,"Maceta Cemento", 2000, 2000)
+const producto2 = new Producto(2,"Estructura Hierro", 1000, 1000)
+const producto3 = new Producto(3,"Pie Hierro", 500, 500)
+const producto4 = new Producto(4,"Pie Madera", 250, 250)
+const producto5 = new Producto(5,"Maceta Madera", 350, 350)
+const producto6 = new Producto(6,"Combo Hierro+Madera", 1250, 1250)
 
-let productos = [producto1, producto2, producto3, producto4]
+
+
+
+
+let productos = [producto1, producto2, producto3, producto4, producto5, producto6]
 let divProductos = document.getElementById("divProductos")
 let carrito = []
 
 productos.forEach(productosEnArray => {
     divProductos.innerHTML += `
     <div class="card productosSoplo" id="producto${productosEnArray.id}" style="width: 18rem; padding:7px; grid:row"">
+    <img  class="card-img-top" src ="" alt="MacetaCemento">
     <div class="card-body">
-      <h5 class="card-title">Nombre: ${productosEnArray.nombre}</h5>
-        <p> Marca: ${productosEnArray.marca}</p>
-        <p> Precio: ${productosEnArray.precio}</p>
-        <p> Stock: ${productosEnArray.stock}</p>
+      <h5 class="card-title">${productosEnArray.nombre}</h5>
+        <p> Precio: $${productosEnArray.precio}</p>
       <a href="#" id="boton${productosEnArray.id}" class="btn btn-primary">Agregar al carrito</a>
     </div>
   </div>
@@ -42,8 +48,7 @@ document.getElementById("mostrarBoton").addEventListener('click', ()=> {
     console.log(arrayParseado)
 })
 
-/*desafio clase 11 - Storage-JSON -*/
-   
+/*- Storage-JSON -*/  
 class buscador {
     constructor(modelo,material,precio, stock) {
         this.modelo = modelo;
@@ -92,19 +97,27 @@ inputTexto.addEventListener('change', () => {
 })
 
 
-/*let botonundefined =document.getElementById ("botonundefined")
+let bgColors = [
+    "linear-gradient(to right, #00b09b, #96c93d)",
+    "linear-gradient(to right, #ff5f6d, #ffc371)",
+  ],
+  i = 0;
 
-botonundefined.addEventListener("click" , () =>
-Toastify({
-    text: "Producto agregado al carrito",
-    duration: 3000,
-    close: true,
-    gravity: "top", // `top` or `bottom`
-    position: "right", // `left`, `center` or `right`
-    stopOnFocus: true, // Prevents dismissing of toast on hover
+
+// Displaying toast on manual action `Try`
+document.getElementsByClassName("btn-primary");addEventListener("click", function() {
+  Toastify({
+    text: "Agregado a Carrito",
+    duration: 2000,
+    close: i % 3 ? true : false,
     style: {
-      background: "linear-gradient(to right, #00b09b, #96c93d)",
-    },
-    onClick: function(){} // Callback after click
+      background: bgColors[i % 2],
+    }
   }).showToast();
-  )*/
+  i++;
+});
+
+/*fetch api hora*/
+fetch("http://api.timezonedb.com/v2.1/get-time-zone")
+.then(response => response.json())
+.then(data =>console.log(data))
